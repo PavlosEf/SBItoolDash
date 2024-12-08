@@ -182,10 +182,6 @@ elif selected_tool == "Surebet Calculator":
 elif selected_tool == "Top Price / Betfair Calculator":
     st.title("Top Price / Betfair Calculator")
     st.write("Placeholder for the Top Price / Betfair Calculator.")
-    # Add this inside the "Top Price / Betfair Calculator" section
-elif selected_tool == "Top Price / Betfair Calculator":
-    st.title("Top Price / Betfair Calculator")
-    st.markdown("This calculator helps you calculate lay stakes, liabilities, and profits for matched betting scenarios.")
 
     # Define the function for calculation
     def calculate_back_lay_bet(back_stake, back_odds, lay_odds, commission):
