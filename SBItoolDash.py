@@ -81,12 +81,6 @@ if selected_tool == "Off Prices Calculator":
         }
 
         /* Result boxes for percentage */
-
-        /* Add a container for result and label */
-        .result-container {
-            display: flex; /* Use flexbox for alignment */
-            align-items: center; /* Align items vertically */
-            gap: 20px; /* Set 20px spacing between percentage and label */
         }
         .result-box {
             border: 2px solid #FFFFFF;  /* White border */
