@@ -75,10 +75,13 @@ if selected_tool == "Off Prices Calculator":
     <style>
         /* Input fields with black text */
         input[type="text"] {
-            width: 30%; /* Reduce input box width */
-            background-color: #EAEAEA; /* Light grey input fields */
-            color: #000000 !important; /* Black text inside input fields */
-            caret-color: #000000; /* Black caret for typing */
+           width: 100% !important; /* Ensure input area takes full width of the column */
+           max-width: 200px !important; /* Limit the maximum size of the box */
+           background-color: #EAEAEA !important; /* Light grey background */
+           color: #000000 !important; /* Black text */
+           caret-color: #000000 !important; /* Black caret for typing */
+           padding: 5px !important; /* Adjust padding for a compact input */
+           border-radius: 5px; /* Optional: keep rounded corners */
         }
 
         /* Result boxes for percentage */
