@@ -1,90 +1,78 @@
 import streamlit as st
 
-# Set the page config
-st.set_page_config(
-    page_title="Betting Tools Dashboard",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+# Set the page configuration
+st.set_page_config(page_title="Betting Tools", layout="wide")
 
-# Custom CSS for styling
-st.markdown("""
+# Define the sidebar with navigation
+st.sidebar.title("Navigation")
+options = ["Off Prices Calculator", "Surebet Calculator", "Margins Removal", "Alternative Lines Converter", "General Tab 1", "General Tab 2"]
+selected_option = st.sidebar.selectbox("Select a tool", options)
+
+# Set the background color
+st.markdown(
+    """
     <style>
-    /* Sidebar styling */
-    .css-1d391kg {
-        background-color: #2b2b2b;
+    .reportview-container {
+        background: #2E2E2E;
     }
-    .css-17eq0hr {
-        background-color: #333333;
+    .sidebar .sidebar-content {
+        background: #2E2E2E;
     }
-    /* Font and layout adjustments */
-    body {
-        color: #e0e0e0;
-        background-color: #1e1e1e;
-    }
-    .css-1hynsf2 {
-        background-color: #444444 !important;
-    }
-    h1, h2, h3, h4, h5 {
-        color: #e0e0e0 !important;
-    }
-    .css-10trblm {
-        color: #e0e0e0;
-    }
-    /* Main dashboard area */
-    .dashboard-container {
-        background-color: #2b2b2b;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    .stButton>button {
+        background-color: #4CAF50;
+        color: white;
     }
     </style>
-""", unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True
+)
 
-# Sidebar navigation
-with st.sidebar:
-    st.header("Tools Menu")
-    page = st.radio(
-        "Select a Tool:",
-        (
-            "Off Prices Calculator",
-            "Surebet Calculator",
-            "Margins Removal",
-            "Alternative Lines Converter",
-            "General Tab 1",
-            "General Tab 2"
-        )
-    )
-
-# Main content area
-st.markdown("<div class='dashboard-container'>", unsafe_allow_html=True)
-if page == "Off Prices Calculator":
+# Function for Off Prices Calculator
+def off_prices_calculator():
     st.title("Off Prices Calculator")
-    st.write("This is the page for the Off Prices Calculator.")
-    # Placeholder for Off Prices Calculator content
+    # Add your calculator logic here
+    st.write("This is where the Off Prices Calculator will be implemented.")
 
-elif page == "Surebet Calculator":
+# Function for Surebet Calculator
+def surebet_calculator():
     st.title("Surebet Calculator")
-    st.write("This is the page for the Surebet Calculator.")
-    # Placeholder for Surebet Calculator content
+    # Add your calculator logic here
+    st.write("This is where the Surebet Calculator will be implemented.")
 
-elif page == "Margins Removal":
+# Function for Margins Removal
+def margins_removal():
     st.title("Margins Removal")
-    st.write("This is the page for Margins Removal.")
-    # Placeholder for Margins Removal content
+    # Add your calculator logic here
+    st.write("This is where the Margins Removal tool will be implemented.")
 
-elif page == "Alternative Lines Converter":
+# Function for Alternative Lines Converter
+def alternative_lines_converter():
     st.title("Alternative Lines Converter")
-    st.write("This is the page for the Alternative Lines Converter.")
-    # Placeholder for Alternative Lines Converter content
+    # Add your calculator logic here
+    st.write("This is where the Alternative Lines Converter will be implemented.")
 
-elif page == "General Tab 1":
+# Function for General Tab 1
+def general_tab_1():
     st.title("General Tab 1")
-    st.write("This is a placeholder for future tools.")
-    # Placeholder for General Tab 1 content
+    # Add your content here
+    st.write("This is where General Tab 1 content will be implemented.")
 
-elif page == "General Tab 2":
+# Function for General Tab 2
+def general_tab_2():
     st.title("General Tab 2")
-    st.write("This is a placeholder for future tools.")
-    # Placeholder for General Tab 2 content
-st.markdown("</div>", unsafe_allow_html=True)
+    # Add your content here
+    st.write("This is where General Tab 2 content will be implemented.")
+
+# Display the selected tool
+if selected_option == "Off Prices Calculator":
+    off_prices_calculator()
+elif selected_option == "Surebet Calculator":
+    surebet_calculator()
+elif selected_option == "Margins Removal":
+    margins_removal()
+elif selected_option == "Alternative Lines Converter":
+    alternative_lines_converter()
+elif selected_option == "General Tab 1":
+    general_tab_1()
+elif selected_option == "General Tab 2":
+    general_tab_2()
