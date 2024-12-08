@@ -67,10 +67,10 @@ if selected_tool == "Off Prices Calculator":
     st.markdown("Enter prices below to calculate the percentage difference for up to 10 rows.")
 
     def parse_number(number_str):
-    try:
-        return float(number_str.replace(",", "."))
-    except ValueError:
-        return None
+        try:
+            return float(number_str.replace(",", "."))
+        except ValueError:
+            return None
 
 # Calculate label outcome based on the difference
 def get_label(difference):
