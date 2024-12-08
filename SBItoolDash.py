@@ -137,7 +137,7 @@ if selected_tool == "Off Prices Calculator":
 
     # Create input fields and calculate results
     for i in range(10):
-        col1, col2, col3, col4 = st.columns([0.8, 0.8, 1.2, 1])  # Adjust column sizes
+        col1, col2, col3, col4 = st.columns([0.2, 0.4, 1.2, 1])  # Adjust column sizes
         
         with col1:
             price_a = st.text_input(f"Kaizen Odds {i + 1}:", key=f"price_a_{i}")
