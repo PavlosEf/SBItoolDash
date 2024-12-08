@@ -7,39 +7,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for styling (add this inside your main style block)
-    st.markdown(
-        """
-        <style>
-            input {
-                width: 150px !important; /* Make input boxes smaller */
-                background-color: #EAEAEA; /* Light grey input fields */
-                color: #000000; /* Black text inside input fields */
-            }
-            .result-box {
-                border: 2px solid #FFFFFF;  /* White border */
-                padding: 5px;
-                margin-top: 5px; /* Smaller margin for better alignment */
-                text-align: center;
-                border-radius: 5px;
-                width: 90px; /* Fixed width for results */
-                display: inline-block;
-            }
-            .ok {
-                color: #00FF00; /* Green for OK */
-            }
-            .off2 {
-                color: #800080; /* Purple for OFF 2 */
-            }
-            .off1 {
-                color: #FF0000; /* Red for OFF 1 */
-            }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
-
-
 # Sidebar navigation
 with st.sidebar:
     st.title("Tools Menu")
