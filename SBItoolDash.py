@@ -22,8 +22,8 @@ st.markdown("""
             color: #FFFFFF; /* Sidebar labels */
         }
         
-        /* Make sidebar radio button labels white */
-        section[data-testid="stSidebar"] .st-radio > label {
+        /* Ensure all text in the sidebar is white */
+        section[data-testid="stSidebar"] * {
         color: #FFFFFF !important;
         }
 
