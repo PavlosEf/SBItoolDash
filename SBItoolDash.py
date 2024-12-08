@@ -164,11 +164,16 @@ if selected_tool == "Off Prices Calculator":
                 difference = ((1 / parsed_a) - (1 / parsed_b)) * 100
                 
                 # Display percentage difference in a styled box
-                with col3:
-                    st.markdown(
-                        f'<div class="result-box">{difference:.2f}%</div>',
-                        unsafe_allow_html=True,
-                    )
+               with col3:
+                   st.markdown(
+                       f"""
+                       <div class="result-container">
+                           <div class="result-box">{difference:.2f}%</div>
+                           {get_label(difference)}
+                       </div>
+                       """,
+                      unsafe_allow_html=True,
+                      )
                 
                 # Display label in a styled box
                 with col4:
