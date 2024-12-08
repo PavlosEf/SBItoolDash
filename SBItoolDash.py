@@ -221,10 +221,7 @@ elif selected_tool == "Top Price / Betfair Calculator":
 
     # Add a Calculate button
     if st.button("Calculate"):
-
-
-    # Calculate results
-    if st.sidebar.button("Calculate"):
+        # Calculate results
         results = calculate_back_lay_bet(back_stake, back_odds, lay_odds, commission)
 
         # Results Display
@@ -241,6 +238,7 @@ elif selected_tool == "Top Price / Betfair Calculator":
                 "Profit (£)": [results["Profit if Back Bet Wins"], results["Profit if Lay Bet Wins"]],
             }
         )
+    
     else:
         st.write("Please input values and click the **Calculate** button to see results.")
 
