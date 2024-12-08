@@ -81,7 +81,6 @@ if selected_tool == "Off Prices Calculator":
         }
 
         /* Result boxes for percentage */
-        }
         .result-box {
             border: 2px solid #FFFFFF;  /* White border */
             padding: 5px;
