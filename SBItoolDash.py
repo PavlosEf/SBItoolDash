@@ -31,13 +31,7 @@ st.markdown("""
     .css-10trblm {
         color: #e0e0e0;
     }
-    /* Horizontal bar styling */
-    .horizontal-bar {
-        background-color: #333333;
-        height: 10px;
-        border-radius: 5px;
-        margin: 20px 0;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  
     }
     </style>
 """, unsafe_allow_html=True)
