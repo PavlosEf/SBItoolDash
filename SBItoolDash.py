@@ -93,4 +93,11 @@ elif page == "Alternative Lines Converter":
 elif page == "General Tab 1":
     st.title("General Tab 1")
     st.markdown("<div class='horizontal-bar'></div>", unsafe_allow_html=True)
-    st.write("This i
+    st.write("This is a placeholder for future tools.")
+    # Placeholder for General Tab 1 content
+
+elif page == "General Tab 2":
+    st.title("General Tab 2")
+    st.markdown("<div class='horizontal-bar'></div>", unsafe_allow_html=True)
+    st.write("This is a placeholder for future tools.")
+    # Placeholder for General Tab 2 content
