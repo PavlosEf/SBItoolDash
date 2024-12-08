@@ -1,120 +1,93 @@
 import streamlit as st
 
-# Set the page config
+# Set page configuration
 st.set_page_config(
     page_title="Betting Tools Dashboard",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for full dark grey background and styling
+# Custom CSS for styling the dark theme
 st.markdown("""
     <style>
-
-/* Main app container background and fix white gap */
-html, body, .stApp {
-    background-color: #1E1E1E; /* Dark grey background */
-    margin: 0;
-    padding: 0;
-    height: 100%; /* Ensure the entire height is covered */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-}
-
-/* Remove padding/margin from Streamlit's main content wrapper */
-.main {
-    margin: 0;
-    padding: 0;
-    background-color: #1E1E1E; /* Match background color */
-}
-
-
-
-    
-        /* Sidebar background */
+        /* Sidebar styling */
         section[data-testid="stSidebar"] {
-            background-color: #1E1E1E; /* Dark grey background for sidebar */
+            background-color: #2B3A42; /* Dark grey sidebar background */
+            color: #FFFFFF; /* White text in the sidebar */
         }
-
-        /* Tools Menu Header */
-        section[data-testid="stSidebar"] h1 {
-            color: #FFFFFF; /* White text for the Tools Menu header */
-            font-size: 20px; /* Adjust font size if needed */
-            font-weight: bold; /* Make it bold */
-            text-align: center; /* Center align the header */
+        section[data-testid="stSidebar"] h1, h2, h3, h4, h5, h6 {
+            color: #FFFFFF; /* Ensure all headers in the sidebar are white */
         }
-
-        /* Radio buttons in the sidebar */
         section[data-testid="stSidebar"] label {
-            color: #FFFFFF; /* White text for labels */
+            color: #FFFFFF; /* Sidebar labels */
         }
 
-        /* Adjust margin and padding if necessary */
-        section[data-testid="stSidebar"] {
-            padding: 20px; /* Add some padding for spacing */
-        }
-
-        /* Main background color */
+        /* Main content styling */
         .stApp {
-            background-color: #1E1E1E; /* Dark grey background for the main content */
+            background-color: #3E4E56; /* Main content background */
+            color: #FFFFFF; /* White text for the main area */
         }
 
-        /* Ensure all text inside the main content is white */
-        .stApp * {
-            color: #FFFFFF; /* White text */
+        /* Customize radio buttons (optional) */
+        div[data-testid="stSidebar"] .st-radio > label {
+            color: #FFFFFF; /* White radio button text */
         }
 
+        /* Add some padding to the sidebar */
+        section[data-testid="stSidebar"] {
+            padding: 20px;
+        }
     </style>
 """, unsafe_allow_html=True)
 
-
 # Sidebar navigation
 with st.sidebar:
-    st.header("Tools Menu")
-    page = st.radio(
+    st.title("Tools Menu")
+    selected_tool = st.radio(
         "Select a Tool:",
-        (
+        [
             "Off Prices Calculator",
             "Surebet Calculator",
+            "Top Price / Betfair Calculator",
             "Margins Removal",
             "Alternative Lines Converter",
             "General Tab 1",
             "General Tab 2"
-        )
+        ]
     )
 
 # Main content area
-if page == "Off Prices Calculator":
+if selected_tool == "Off Prices Calculator":
     st.title("Off Prices Calculator")
-    st.markdown("<div class='horizontal-bar'></div>", unsafe_allow_html=True)
-    st.write("This is the page for the Off Prices Calculator.")
-    # Placeholder for Off Prices Calculator content
+    st.write("Placeholder for the Off Prices Calculator.")
+    # Add your Off Prices Calculator logic here
 
-elif page == "Surebet Calculator":
+elif selected_tool == "Surebet Calculator":
     st.title("Surebet Calculator")
-    st.markdown("<div class='horizontal-bar'></div>", unsafe_allow_html=True)
-    st.write("This is the page for the Surebet Calculator.")
-    # Placeholder for Surebet Calculator content
+    st.write("Placeholder for the Surebet Calculator.")
+    # Add your Surebet Calculator logic here
 
-elif page == "Margins Removal":
+elif selected_tool == "Top Price / Betfair Calculator":
+    st.title("Top Price / Betfair Calculator")
+    st.write("Placeholder for the Top Price / Betfair Calculator.")
+    # Add your Top Price / Betfair Calculator logic here
+
+elif selected_tool == "Margins Removal":
     st.title("Margins Removal")
-    st.markdown("<div class='horizontal-bar'></div>", unsafe_allow_html=True)
-    st.write("This is the page for Margins Removal.")
-    # Placeholder for Margins Removal content
+    st.write("Placeholder for Margins Removal.")
+    # Add your Margins Removal logic here
 
-elif page == "Alternative Lines Converter":
+elif selected_tool == "Alternative Lines Converter":
     st.title("Alternative Lines Converter")
-    st.markdown("<div class='horizontal-bar'></div>", unsafe_allow_html=True)
-    st.write("This is the page for the Alternative Lines Converter.")
-    # Placeholder for Alternative Lines Converter content
+    st.write("Placeholder for the Alternative Lines Converter.")
+    # Add your Alternative Lines Converter logic here
 
-elif page == "General Tab 1":
+elif selected_tool == "General Tab 1":
     st.title("General Tab 1")
-    st.markdown("<div class='horizontal-bar'></div>", unsafe_allow_html=True)
-    st.write("This is a placeholder for future tools.")
-    # Placeholder for General Tab 1 content
+    st.write("Placeholder for General Tab 1.")
+    # Add any future tools or functionality here
 
-elif page == "General Tab 2":
+elif selected_tool == "General Tab 2":
     st.title("General Tab 2")
-    st.markdown("<div class='horizontal-bar'></div>", unsafe_allow_html=True)
-    st.write("This is a placeholder for future tools.")
-    # Placeholder for General Tab 2 content
+    st.write("Placeholder for General Tab 2.")
+    # Add any future tools or functionality here
