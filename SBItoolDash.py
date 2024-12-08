@@ -141,7 +141,7 @@ if selected_tool == "Off Prices Calculator":
             return '<div class="result-box ok">OK</div>' 
         elif -2 >= difference >= 2:
             return '<div class="result-box off2">OFF 2</div>'
-        elif difference < -3:
+        elif difference > -3:
             return '<div class="result-box off1">OFF 1</div>'
         else:
             return '<div class="result-box">None</div>'
