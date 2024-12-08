@@ -14,9 +14,7 @@ st.markdown("""
     .css-1d391kg {
         background-color: #2b2b2b;
     }
-    .css-17eq0hr {
-        background-color: #333333;
-    }
+   
     /* Font and layout adjustments */
     body {
         color: #e0e0e0;
