@@ -78,6 +78,7 @@ if selected_tool == "Off Prices Calculator":
             width: 33%; /* Reduce input box width */
             background-color: #EAEAEA; /* Light grey input fields */
             color: #000000 !important; /* Black text inside input fields */
+            caret-color: #000000; /* Black caret for typing */
         }
 
         /* Result boxes for percentage */
