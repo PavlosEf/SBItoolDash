@@ -71,47 +71,48 @@ if selected_tool == "Off Prices Calculator":
 
     # Add custom CSS for dark background and styling
     st.markdown(
-        """
-        <style>
-            /* Change background color of the main content */
-            .stApp {
-                background-color: #1E1E1E;  /* Dark grey background */
-            }
-            /* Make all text white */
-            * {
-                color: #FFFFFF;  /* White text */
-            }
-            .stTextInput > label {
-                color: #FFFFFF; /* Ensure input labels are white */
-            }
-            /* Style for input boxes */
-            input {
-                width: 33%; /* Reduce input box width to 1/3 size */
-                background-color: #EAEAEA; /* Light grey input fields */
-                color: #000000; /* Black text inside input fields */
-            }
-            .result-box {
-                border: 2px solid #FFFFFF;  /* White border */
-                padding: 5px;
-                margin-top: 29px; /* Align height with inputs */
-                text-align: center;
-                border-radius: 5px;
-                width: 45%;  /* Full width of its column */
-                display: inline-block;
-            }
-            .ok {
-                color: #00FF00; /* Green for OK */
-            }
-            .off2 {
-                color: #800080; /* Purple for OFF 2 */
-            }
-            .off1 {
-                color: #FF0000; /* Red for OFF 1 */
-            }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+    """
+    <style>
+        /* Input fields with black text */
+        input {
+            width: 33%; /* Reduce input box width */
+            background-color: #EAEAEA; /* Light grey input fields */
+            color: #000000 !important; /* Black text inside input fields */
+        }
+
+        /* Result boxes for percentage */
+        .result-box {
+            border: 2px solid #FFFFFF;  /* White border */
+            padding: 5px;
+            margin: 0 10px; /* Add margin to position next to label */
+            text-align: center;
+            border-radius: 5px;
+            width: 70px; /* Smaller width */
+            display: inline-block;
+        }
+
+        /* Color-coded labels */
+        .ok {
+            color: #FFFFFF;
+            background-color: #00FF00; /* Green for OK */
+            border: 2px solid #00FF00;
+        }
+
+        .off2 {
+            color: #FFFFFF;
+            background-color: #800080; /* Purple for OFF 2 */
+            border: 2px solid #800080;
+        }
+
+        .off1 {
+            color: #FFFFFF;
+            background-color: #FF0000; /* Red for OFF 1 */
+            border: 2px solid #FF0000;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
     # Define helper functions
     def parse_number(number_str):
