@@ -85,16 +85,17 @@ if selected_tool == "Off Prices Calculator":
         }
 
         /* Result boxes for percentage */
-        .result-box {
-            border: 2px solid #FFFFFF;  /* White border */
+       .result-box {
+            border: 2px solid #FFFFFF; /* White border */
             padding: 5px;
-            margin: 2 10px; /* Add margin to position next to label */
+            margin: 5px 10px; /* Adjust the spacing around the box */
             text-align: center;
             border-radius: 5px;
             width: 70px; /* Smaller width */
             display: inline-block;
-        }
-
+            position: relative; /* Adjust position relative to normal flow */
+            top: -2px; /* Moves the box slightly up */
+}
         /* Color-coded labels */
         .ok {
             color: #FFFFFF;
