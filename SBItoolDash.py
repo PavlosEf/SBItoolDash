@@ -87,7 +87,7 @@ if selected_tool == "Off Prices Calculator":
         /* Result boxes for percentage */
         .result-box {
             border: 2px solid #FFFFFF;  /* White border */
-            padding: 5px;
+            padding: 10px;
             margin: 0 10px; /* Add margin to position next to label */
             text-align: center;
             border-radius: 5px;
