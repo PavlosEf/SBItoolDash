@@ -164,16 +164,16 @@ if selected_tool == "Off Prices Calculator":
                  difference = ((1 / parsed_a) - (1 / parsed_b)) * 100
 
                     # Display percentage difference and label together in col3
-                with col3:
-                    st.markdown(
-                        f"""
-                        <div class="result-container">
-                            <div class="result-box">{difference:.2f}%</div>
-                            {get_label(difference)}
-                        </div>
-                        """,
-                        unsafe_allow_html=True,
-                    )
+                 with col3:
+                     st.markdown(
+                         f"""
+                         <div class="result-container">
+                             <div class="result-box">{difference:.2f}%</div>
+                             {get_label(difference)}
+                         </div>
+                         """,
+                         unsafe_allow_html=True,
+                     )
 elif selected_tool == "Surebet Calculator":
     st.title("Surebet Calculator")
     st.write("Placeholder for the Surebet Calculator.")
