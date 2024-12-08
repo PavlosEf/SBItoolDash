@@ -69,6 +69,52 @@ if selected_tool == "Off Prices Calculator":
     st.title("Off Prices Calculator")
     st.markdown("Enter prices below to calculate the percentage difference for up to 10 rows.")
 
+    # Add custom CSS for dark background and styling
+st.markdown(
+    """
+    <style>
+        /* Change background color of the main content */
+        .stApp {
+            background-color: #1E1E1E;  /* Dark grey background */
+        }
+        /* Make all text white */
+        * {
+            color: #FFFFFF;  /* White text */
+        }
+        .stTextInput > label {
+            color: #FFFFFF; /* Ensure input labels are white */
+        }
+        /* Style for input boxes */
+        input {
+            width: 33%; /* Reduce input box width to 1/3 size */
+            background-color: #EAEAEA; /* Light grey input fields */
+            color: #000000; /* Black text inside input fields */
+        }
+          .result-box {
+            border: 2px solid #FFFFFF;  /* White border */
+            padding: 5px;
+            margin-top: 29px; /* Align height with inputs */
+            text-align: center;
+            border-radius: 5px;
+            width: 45%;  /* Full width of its column */
+            display: inline-block;
+}
+        }
+        .ok {
+            color: #00FF00; /* Green for OK */
+        }
+        .off2 {
+            color: #800080; /* Purple for OFF 2 */
+        }
+        .off1 {
+            color: #FF0000; /* Red for OFF 1 */
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+
     def parse_number(number_str):
         try:
             return float(number_str.replace(",", "."))
