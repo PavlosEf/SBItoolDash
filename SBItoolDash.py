@@ -42,20 +42,22 @@ st.markdown("""
         .stApp * {
             color: #FFFFFF; /* White text */
         }
- /* Remove margin and padding from the body */
-        body {
-            margin: 0;
-            padding: 0;
-        }
+/* Main app container background and fix white gap */
+html, body, .stApp {
+    background-color: #1E1E1E; /* Dark grey background */
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Ensure the entire height is covered */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
 
-        /* Main app container background and fix white gap */
-        .stApp {
-            background-color: #1E1E1E; /* Dark grey background */
-            margin: 0;
-            padding: 0;
-            height: 100vh; /* Ensure full viewport height */
-        }
-        
+/* Remove padding/margin from Streamlit's main content wrapper */
+.main {
+    margin: 0;
+    padding: 0;
+    background-color: #1E1E1E; /* Match background color */
+}
+
     </style>
 """, unsafe_allow_html=True)
 
