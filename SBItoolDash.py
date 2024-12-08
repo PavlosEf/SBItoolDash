@@ -206,11 +206,22 @@ elif selected_tool == "Top Price / Betfair Calculator":
         }
 
     # Input fields
-    st.sidebar.header("Input Parameters")
-    back_stake = st.sidebar.number_input("Back Stake (£):", min_value=0.0, value=10.0, step=1.0)
-    back_odds = st.sidebar.number_input("Back Odds (decimal):", min_value=1.01, value=2.5, step=0.01)
-    lay_odds = st.sidebar.number_input("Lay Odds (decimal):", min_value=1.01, value=2.4, step=0.01)
-    commission = st.sidebar.slider("Exchange Commission (%):", min_value=0.0, max_value=100.0, value=5.0)
+    st.subheader("Input Parameters")
+
+    # Input fields in the main content area
+    col1, col2 = st.columns(2)
+
+    with col1:
+        back_stake = st.number_input("Back Stake (£):", min_value=0.0, value=10.0, step=1.0)
+        back_odds = st.number_input("Back Odds (decimal):", min_value=1.01, value=2.5, step=0.01)
+
+    with col2:
+        lay_odds = st.number_input("Lay Odds (decimal):", min_value=1.01, value=2.4, step=0.01)
+        commission = st.slider("Exchange Commission (%):", min_value=0.0, max_value=100.0, value=5.0)
+
+    # Add a Calculate button
+    if st.button("Calculate"):
+
 
     # Calculate results
     if st.sidebar.button("Calculate"):
