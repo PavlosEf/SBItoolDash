@@ -60,6 +60,11 @@ elif page == "Surebet Calculator":
     st.write("This is the page for the Surebet Calculator.")
     # Placeholder for Surebet Calculator content
 
+elif page == "Top prices / betfair calculator ":
+    st.title("Top prices ")
+    st.write("This is the page for Top prices calculator .")
+    # Placeholder for Margins Removal content
+
 elif page == "Margins Removal":
     st.title("Margins Removal")
     st.write("This is the page for Margins Removal.")
