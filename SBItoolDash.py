@@ -75,7 +75,7 @@ if selected_tool == "Off Prices Calculator":
     <style>
         /* Input fields with black text */
         input[type="text"] {
-            width: 33%; /* Reduce input box width */
+            width: 66%; /* Reduce input box width */
             background-color: #EAEAEA; /* Light grey input fields */
             color: #000000 !important; /* Black text inside input fields */
             caret-color: #000000; /* Black caret for typing */
