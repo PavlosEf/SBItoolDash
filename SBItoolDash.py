@@ -18,8 +18,8 @@ st.markdown(
     .sidebar .sidebar-content {
         background: #2E2E2E;  /* This is the sidebar content background */
     }
-    .main {
-        background-color: #2E2E2E;  /* This is the main content area background */
+    .css-1d391kg {  /* This is the main content area background */
+        background-color: #2E2E2E !important;
     }
     .stButton>button {
         background-color: #4CAF50;
@@ -27,7 +27,6 @@ st.markdown(
     }
     </style>
     """,
-    
     unsafe_allow_html=True
 )
 
