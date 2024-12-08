@@ -10,21 +10,27 @@ st.set_page_config(
 # Custom CSS for full dark grey background and styling
 st.markdown("""
     <style>
-        /* Sidebar background */
-        .css-1d391kg {
-            background-color: #1E1E1E; /* Match main background */
-            }
-        .css-17eq0hr {
-        background-color: #1E1E1E; /* Match main background */
-            }
+         /* Sidebar background */
+        section[data-testid="stSidebar"] {
+            background-color: #1E1E1E; /* Dark grey background for sidebar */
+        }
 
+        /* Tools Menu Header */
+        section[data-testid="stSidebar"] h1 {
+            color: #FFFFFF; /* White text for the Tools Menu header */
+            font-size: 20px; /* Adjust font size if needed */
+            font-weight: bold; /* Make it bold */
+            text-align: center; /* Center align the header */
+        }
 
+        /* Radio buttons in the sidebar */
+        section[data-testid="stSidebar"] label {
+            color: #FFFFFF; /* White text for labels */
+        }
 
-
-    
-        /* Change background color of the main content */
-        .stApp {
-            background-color: #1E1E1E;  /* Dark grey background */
+        /* Adjust margin and padding if necessary */
+        section[data-testid="stSidebar"] {
+            padding: 20px; /* Add some padding for spacing */
         }
         /* Make all text white */
         * {
