@@ -158,6 +158,7 @@ if selected_tool == "Off Prices Calculator":
     if price_a and price_b:
         parsed_a = parse_number(price_a)
         parsed_b = parse_number(price_b)
+       
         if parsed_a and parsed_b and parsed_a > 0 and parsed_b > 0:
          # Calculate percentage difference
         difference = ((1 / parsed_a) - (1 / parsed_b)) * 100
