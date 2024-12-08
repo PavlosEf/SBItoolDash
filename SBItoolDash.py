@@ -123,7 +123,7 @@ if selected_tool == "Off Prices Calculator":
 
     def get_label(difference):
         if difference > -2:
-            return '<div class="result-box ok">OK</div>'
+            return '<div class="result-box ok">OK</div>' 
         elif -2 >= difference >= 2:
             return '<div class="result-box off2">OFF 2</div>'
         elif difference < -2:
