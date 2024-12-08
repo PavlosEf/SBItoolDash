@@ -21,7 +21,10 @@ st.markdown("""
         section[data-testid="stSidebar"] label {
             color: #FFFFFF; /* Sidebar labels */
         }
-        
+        /* Make all text in the main content white */
+        .stApp * {
+        color: #FFFFFF !important;
+        }
         /* Ensure all text in the sidebar is white */
         section[data-testid="stSidebar"] * {
         color: #FFFFFF !important;
