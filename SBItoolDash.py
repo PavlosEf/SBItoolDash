@@ -31,6 +31,13 @@ st.markdown("""
     .css-10trblm {
         color: #e0e0e0;
     }
+    /* Main dashboard area */
+    .dashboard-container {
+        background-color: #2b2b2b;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -50,6 +57,7 @@ with st.sidebar:
     )
 
 # Main content area
+st.markdown("<div class='dashboard-container'>", unsafe_allow_html=True)
 if page == "Off Prices Calculator":
     st.title("Off Prices Calculator")
     st.write("This is the page for the Off Prices Calculator.")
@@ -79,3 +87,4 @@ elif page == "General Tab 2":
     st.title("General Tab 2")
     st.write("This is a placeholder for future tools.")
     # Placeholder for General Tab 2 content
+st.markdown("</div>", unsafe_allow_html=True)
