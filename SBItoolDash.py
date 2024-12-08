@@ -13,10 +13,13 @@ st.markdown(
     """
     <style>
     .reportview-container {
-        background: #2E2E2E;
+        background: #2E2E2E;  /* This is the sidebar background */
     }
     .sidebar .sidebar-content {
-        background: #2E2E2E;
+        background: #2E2E2E;  /* This is the sidebar content background */
+    }
+    .main {
+        background-color: #1E1E1E;  /* This is the main content area background */
     }
     .stButton>button {
         background-color: #4CAF50;
