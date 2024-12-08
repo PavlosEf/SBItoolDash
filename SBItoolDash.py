@@ -10,6 +10,18 @@ st.set_page_config(
 # Custom CSS for full dark grey background and styling
 st.markdown("""
     <style>
+        /* Sidebar background */
+        .css-1d391kg {
+            background-color: #1E1E1E; /* Match main background */
+            }
+        .css-17eq0hr {
+        background-color: #1E1E1E; /* Match main background */
+            }
+
+
+
+
+    
         /* Change background color of the main content */
         .stApp {
             background-color: #1E1E1E;  /* Dark grey background */
