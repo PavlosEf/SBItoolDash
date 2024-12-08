@@ -7,32 +7,46 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for styling
+# Custom CSS for full dark grey background and styling
 st.markdown("""
     <style>
-    /* Sidebar styling */
-    .css-1d391kg {
-        background-color: #2b2b2b;
-    }
-    .css-17eq0hr {
-        background-color: #333333;
-    }
-    /* Font and layout adjustments */
-    body {
-        color: #e0e0e0;
-        background-color: #1e1e1e;
-    }
-    .css-1hynsf2 {
-        background-color: #444444 !important;
-    }
-    h1, h2, h3, h4, h5 {
-        color: #e0e0e0 !important;
-    }
-    .css-10trblm {
-        color: #e0e0e0;
-    }
-  
-    }
+        /* Change background color of the main content */
+        .stApp {
+            background-color: #1E1E1E;  /* Dark grey background */
+        }
+        /* Make all text white */
+        * {
+            color: #FFFFFF;  /* White text */
+        }
+        .stTextInput > label {
+            color: #FFFFFF; /* Ensure input labels are white */
+        }
+        /* Style for input boxes */
+        input {
+            width: 33%; /* Reduce input box width to 1/3 size */
+            background-color: #EAEAEA; /* Light grey input fields */
+            color: #000000; /* Black text inside input fields */
+        }
+        /* Result box styling */
+        .result-box {
+            border: 2px solid #FFFFFF;  /* White border */
+            padding: 5px;
+            margin-top: 29px; /* Align height with inputs */
+            text-align: center;
+            border-radius: 5px;
+            width: 45%;  /* Full width of its column */
+            display: inline-block;
+        }
+        /* Specific text styling */
+        .ok {
+            color: #00FF00; /* Green for OK */
+        }
+        .off2 {
+            color: #800080; /* Purple for OFF 2 */
+        }
+        .off1 {
+            color: #FF0000; /* Red for OFF 1 */
+        }
     </style>
 """, unsafe_allow_html=True)
 
@@ -79,9 +93,4 @@ elif page == "Alternative Lines Converter":
 elif page == "General Tab 1":
     st.title("General Tab 1")
     st.markdown("<div class='horizontal-bar'></div>", unsafe_allow_html=True)
-    st.write("This is a placeholder for future tools.")
-    # Placeholder for General Tab 1 content
-
-elif page == "General Tab 2":
-    st.title("General Tab 2")
-  
+    st.write("This i
