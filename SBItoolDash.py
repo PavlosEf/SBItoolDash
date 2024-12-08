@@ -101,7 +101,7 @@ if selected_tool == "Off Prices Calculator":
             display: flex; /* Use flexbox for alignment */
             align-items: center; /* Vertically align items */
             justify-content: flex-start; /* Align items to the left */
-            gap: 20px; /* Add spacing between the percentage and label boxes */
+            gap: 2px; /* Add spacing between the percentage and label boxes */
             margin-top: 5px; /* Optional: Add some space above the container */
         }
 
