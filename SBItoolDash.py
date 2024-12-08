@@ -94,7 +94,7 @@ if selected_tool == "Off Prices Calculator":
             width: 70px; /* Smaller width */
             display: inline-block;
             position: relative; /* Adjust position relative to normal flow */
-            top: 5px; /* Moves the box slightly up */
+            top: 10px; /* Moves the box slightly up */
 }
         /* Color-coded labels */
         .ok {
