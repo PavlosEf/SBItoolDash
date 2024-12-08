@@ -42,6 +42,7 @@ with st.sidebar:
         (
             "Off Prices Calculator",
             "Surebet Calculator",
+            "Top prices / betfair calculator ",
             "Margins Removal",
             "Alternative Lines Converter",
             "General Tab 1",
