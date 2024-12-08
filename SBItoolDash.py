@@ -42,6 +42,20 @@ st.markdown("""
         .stApp * {
             color: #FFFFFF; /* White text */
         }
+ /* Remove margin and padding from the body */
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Main app container background and fix white gap */
+        .stApp {
+            background-color: #1E1E1E; /* Dark grey background */
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Ensure full viewport height */
+        }
+        
     </style>
 """, unsafe_allow_html=True)
 
