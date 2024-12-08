@@ -160,20 +160,20 @@ if selected_tool == "Off Prices Calculator":
             parsed_b = parse_number(price_b)
        
             if parsed_a and parsed_b and parsed_a > 0 and parsed_b > 0:
-             # Calculate percentage difference
-            difference = ((1 / parsed_a) - (1 / parsed_b)) * 100
+                 # Calculate percentage difference
+                 difference = ((1 / parsed_a) - (1 / parsed_b)) * 100
 
-            # Display percentage difference and label together in col3
-            with col3:
-                st.markdown(
-                    f"""
-                    <div class="result-container">
-                        <div class="result-box">{difference:.2f}%</div>
-                        {get_label(difference)}
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
-                )
+                    # Display percentage difference and label together in col3
+                with col3:
+                    st.markdown(
+                        f"""
+                        <div class="result-container">
+                            <div class="result-box">{difference:.2f}%</div>
+                            {get_label(difference)}
+                        </div>
+                        """,
+                        unsafe_allow_html=True,
+                    )
 elif selected_tool == "Surebet Calculator":
     st.title("Surebet Calculator")
     st.write("Placeholder for the Surebet Calculator.")
