@@ -147,7 +147,7 @@ if selected_tool == "Off Prices Calculator":
             return '<div class="result-box">None</div>'
 
     # Create input fields and calculate results
-    for i in range(10):
+    for i in range(5):
         col1, col2, col3, col4 = st.columns([0.3, 0.3, 1, 1])  # Adjust column sizes
         
         with col1:
