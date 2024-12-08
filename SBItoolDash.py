@@ -10,7 +10,7 @@ st.set_page_config(
 # Custom CSS for full dark grey background and styling
 st.markdown("""
     <style>
-         /* Sidebar background */
+        /* Sidebar background */
         section[data-testid="stSidebar"] {
             background-color: #1E1E1E; /* Dark grey background for sidebar */
         }
@@ -32,41 +32,19 @@ st.markdown("""
         section[data-testid="stSidebar"] {
             padding: 20px; /* Add some padding for spacing */
         }
-        /* Make all text white */
-        * {
-            color: #FFFFFF;  /* White text */
+
+        /* Main background color */
+        .stApp {
+            background-color: #1E1E1E; /* Dark grey background for the main content */
         }
-        .stTextInput > label {
-            color: #FFFFFF; /* Ensure input labels are white */
-        }
-        /* Style for input boxes */
-        input {
-            width: 33%; /* Reduce input box width to 1/3 size */
-            background-color: #EAEAEA; /* Light grey input fields */
-            color: #000000; /* Black text inside input fields */
-        }
-        /* Result box styling */
-        .result-box {
-            border: 2px solid #FFFFFF;  /* White border */
-            padding: 5px;
-            margin-top: 29px; /* Align height with inputs */
-            text-align: center;
-            border-radius: 5px;
-            width: 45%;  /* Full width of its column */
-            display: inline-block;
-        }
-        /* Specific text styling */
-        .ok {
-            color: #00FF00; /* Green for OK */
-        }
-        .off2 {
-            color: #800080; /* Purple for OFF 2 */
-        }
-        .off1 {
-            color: #FF0000; /* Red for OFF 1 */
+
+        /* Ensure all text inside the main content is white */
+        .stApp * {
+            color: #FFFFFF; /* White text */
         }
     </style>
 """, unsafe_allow_html=True)
+
 
 # Sidebar navigation
 with st.sidebar:
