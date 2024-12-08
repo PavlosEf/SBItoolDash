@@ -7,6 +7,47 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# Custom CSS for styling the dark theme
+st.markdown("""
+    <style>
+        /* Sidebar styling */
+        section[data-testid="stSidebar"] {
+            background-color: #2B3A42; /* Dark grey sidebar background */
+            color: #FFFFFF; /* White text in the sidebar */
+        }
+        section[data-testid="stSidebar"] h1, h2, h3, h4, h5, h6 {
+            color: #FFFFFF; /* Ensure all headers in the sidebar are white */
+        }
+        section[data-testid="stSidebar"] label {
+            color: #FFFFFF; /* Sidebar labels */
+        }
+        /* Make all text in the main content white */
+        .stApp * {
+        color: #FFFFFF !important;
+        }
+        /* Ensure all text in the sidebar is white */
+        section[data-testid="stSidebar"] * {
+        color: #FFFFFF !important;
+        }
+
+        /* Main content styling */
+        .stApp {
+            background-color: #3E4E56; /* Main content background */
+            color: #FFFFFF; /* White text for the main area */
+        }
+
+        /* Customize radio buttons (optional) */
+        div[data-testid="stSidebar"] .st-radio > label {
+            color: #FFFFFF; /* White radio button text */
+        }
+
+        /* Add some padding to the sidebar */
+        section[data-testid="stSidebar"] {
+            padding: 20px;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 # Sidebar navigation
 with st.sidebar:
     st.title("Tools Menu")
