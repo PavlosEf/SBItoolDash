@@ -49,9 +49,9 @@ with st.container():
 # Dynamic Input for W1 and W2 stakes
 col1, col2 = st.columns([1, 1])
 with col1:
-    w1_stake = st.number_input("W1 Stake (€)", min_value=0.0, value=0.0, step=0.01)
+    w1_stake = st.number_input("W1 Stake (€)", min_value=0.0, value=0.0, step=0.01, key="w1_stake")
 with col2:
-    w2_stake = st.number_input("W2 Stake (€)", min_value=0.0, value=0.0, step=0.01)
+    w2_stake = st.number_input("W2 Stake (€)", min_value=0.0, value=0.0, step=0.01, key="w2_stake")
 
 # Calculate dynamically based on input priority
 if total_stake > 0:
@@ -62,6 +62,12 @@ elif w2_stake > 0:
     results = calculate_surebet(w1_odds, w2_odds, w2_stake=w2_stake)
 else:
     results = None
+
+# Update stakes dynamically
+if results:
+    st.session_state.w1_stake = results["W1 Stake"]
+    st.session_state.w2_stake = results["W2 Stake"]
+    st.session_state.total_stake = results["Total Stake"]
 
 # Display Results
 if results:
