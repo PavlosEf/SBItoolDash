@@ -29,21 +29,20 @@ def calculate_surebet(odds, kaizen_stake=None, total_stake=None):
 st.title("Surebet Calculator")
 st.markdown("Calculate stakes and profits for arbitrage betting scenarios dynamically.")
 
-# Input Fields
+# Dropdown for number of outcomes
 st.markdown("### Input Parameters")
+num_outcomes = st.selectbox(
+    "Select number of outcomes:", ["2way", "3way", "4way", "5way", "6way", "7way", "8way", "9way", "10way"], index=0
+)
+num_outcomes = int(num_outcomes.replace("way", ""))
+
+# Input Fields
 with st.container():
     col1, col2 = st.columns([1, 1])
     with col1:
         kaizen_odds = st.number_input("Kaizen Odds", min_value=1.01, value=2.5, step=0.01)
     with col2:
         competition_odds_1 = st.number_input("Competition 1 Odds", min_value=1.01, value=2.0, step=0.01)
-
-# Dropdown for number of outcomes
-st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
-num_outcomes = st.selectbox(
-    "Select number of outcomes:", ["2way", "3way", "4way", "5way", "6way", "7way", "8way", "9way", "10way"], index=0
-)
-num_outcomes = int(num_outcomes.replace("way", ""))
 
 # Dynamic Input for Odds
 odds = [kaizen_odds, competition_odds_1]
