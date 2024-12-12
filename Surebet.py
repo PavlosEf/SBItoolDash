@@ -1,13 +1,15 @@
 import streamlit as st
 
 # Function to calculate stakes and arbitrage
-def calculate_surebet(odds, stakes=None, total_stake=None):
+def calculate_surebet(odds, kaizen_stake=None, total_stake=None):
     num_outcomes = len(odds)
 
     if total_stake:
         # Split total stake for equal profit
         stakes = [total_stake / sum(1 / o for o in odds) * (1 / o) for o in odds]
-    elif stakes:
+    elif kaizen_stake:
+        # Calculate stakes from Kaizen Stake for equal profit
+        stakes = [kaizen_stake * (1 / odds[0]) * o for o in odds]
         total_stake = sum(stakes)
 
     # Calculate profits for each outcome
@@ -32,9 +34,9 @@ st.markdown("### Input Parameters")
 with st.container():
     col1, col2 = st.columns([1, 1])
     with col1:
-        w1_odds = st.number_input("Kaizen Odds", min_value=1.01, value=2.5, step=0.01)
+        kaizen_odds = st.number_input("Kaizen Odds", min_value=1.01, value=2.5, step=0.01)
     with col2:
-        w2_odds = st.number_input("Competition Odds", min_value=1.01, value=2.0, step=0.01)
+        competition_odds_1 = st.number_input("Competition 1 Odds", min_value=1.01, value=2.0, step=0.01)
 
 # Dropdown for number of outcomes
 st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
@@ -43,31 +45,19 @@ num_outcomes = st.selectbox(
 )
 num_outcomes = int(num_outcomes.replace("way", ""))
 
-# Warning Message for Higher Ways
+# Dynamic Input for Odds
+odds = [kaizen_odds, competition_odds_1]
 if num_outcomes > 2:
-    st.markdown(
-        f"<p style='color: red; font-weight: bold;'>You chose to calculate between {num_outcomes} different outcomes (Bookmakers).</p>",
-        unsafe_allow_html=True,
-    )
-
-# Dynamic Input for Odds and Stakes
-odds = [w1_odds, w2_odds]
-stakes = []
-if num_outcomes > 2:
-    for i in range(3, num_outcomes + 1):
-        col = st.columns([1])[0]
+    for i in range(2, num_outcomes):
         odds.append(
-            col.number_input(f"Competition {i - 2} Odds", min_value=1.01, step=0.01, value=1.01, key=f"odds_{i}")
+            st.number_input(f"Competition {i} Odds", min_value=1.01, step=0.01, value=1.01, key=f"odds_{i}")
         )
 
-col1, col2, col3 = st.columns([1, 1, 1])
+# Input for stakes
+col1, col2 = st.columns([1, 1])
 with col1:
-    w1_stake = st.number_input("Kaizen Stakes (€)", min_value=0.0, step=0.01, value=0.0)
-    stakes.append(w1_stake)
+    kaizen_stake = st.number_input("Kaizen Stakes (€)", min_value=0.0, step=0.01, value=0.0)
 with col2:
-    w2_stake = st.number_input("Competition Stakes (€)", min_value=0.0, step=0.01, value=0.0)
-    stakes.append(w2_stake)
-with col3:
     total_stake = st.number_input("Total Stake (€)", min_value=0.0, step=0.01, value=0.0)
 
 # Ensure all odds are filled
@@ -78,8 +68,8 @@ else:
     # Dynamic Calculation
     if total_stake > 0:
         results = calculate_surebet(odds, total_stake=total_stake)
-    elif all(s > 0 for s in stakes):
-        results = calculate_surebet(odds, stakes=stakes)
+    elif kaizen_stake > 0:
+        results = calculate_surebet(odds, kaizen_stake=kaizen_stake)
     else:
         results = None
 
@@ -121,9 +111,7 @@ if results:
         <div class="result-box">
             <h4>Calculation Results:</h4>
             <ul>
-                <li>Kaizen Stakes: {results['Stakes'][0]}€</li>
-                <li>Competition Stakes: {results['Stakes'][1]}€</li>
-                {''.join(f'<li>Competition {i + 1} Stakes: {results["Stakes"][i + 2]}€</li>' for i in range(len(results['Stakes']) - 2))}
+                {''.join(f'<li>Competition {i + 1} Stakes: {results["Stakes"][i]}€</li>' for i in range(len(results['Stakes'])))}
                 <li>Total Stake: {results['Total Stake']}€</li>
                 {''.join(f'<li style="color: {profit_colors[i]}">Profit Outcome {i + 1}: {results["Profits"][i]}€</li>' for i in range(len(results['Profits'])))}
                 <li>Arbitrage: <span class="arbitrage">{results['Arbitrage %']}%</span></li>
