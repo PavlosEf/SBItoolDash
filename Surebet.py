@@ -51,13 +51,14 @@ if num_outcomes > 2:
     )
 
 # Dynamic Input for Odds and Stakes
-odds = [w1_odds]
+odds = [w1_odds, w2_odds]
 stakes = []
-for i in range(1, num_outcomes):
-    col = st.columns([1])[0]
-    odds.append(
-        col.number_input(f"Competition {i} Odds", min_value=1.01, step=0.01, value=0.0, key=f"odds_{i}")
-    )
+if num_outcomes > 2:
+    for i in range(3, num_outcomes + 1):
+        col = st.columns([1])[0]
+        odds.append(
+            col.number_input(f"Competition {i - 2} Odds", min_value=1.01, step=0.01, value=1.01, key=f"odds_{i}")
+        )
 
 col1, col2, col3 = st.columns([1, 1, 1])
 with col1:
@@ -70,7 +71,7 @@ with col3:
     total_stake = st.number_input("Total Stake (€)", min_value=0.0, step=0.01, value=0.0)
 
 # Ensure all odds are filled
-if any(o == 0.0 for o in odds):
+if any(o < 1.01 for o in odds):
     st.markdown("<p style='color: red;'>Please input all odds</p>", unsafe_allow_html=True)
     results = None
 else:
@@ -116,17 +117,18 @@ if results:
             color: {arbitrage_color};
             font-weight: bold;
         }}
-        .profit-{{i}} {{
-            color: {{color}};
-            font-weight: bold;
-        }}
         </style>
         <div class="result-box">
             <h4>Calculation Results:</h4>
             <ul>
                 <li>Kaizen Stakes: {results['Stakes'][0]}€</li>
                 <li>Competition Stakes: {results['Stakes'][1]}€</li>
+                {''.join(f'<li>Competition {i + 1} Stakes: {results["Stakes"][i + 2]}€</li>' for i in range(len(results['Stakes']) - 2))}
                 <li>Total Stake: {results['Total Stake']}€</li>
+                {''.join(f'<li style="color: {profit_colors[i]}">Profit Outcome {i + 1}: {results["Profits"][i]}€</li>' for i in range(len(results['Profits'])))}
+                <li>Arbitrage: <span class="arbitrage">{results['Arbitrage %']}%</span></li>
+            </ul>
+        </div>
         """,
         unsafe_allow_html=True,
     )
