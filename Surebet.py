@@ -40,16 +40,16 @@ st.markdown("### Input Parameters")
 with st.container():
     col1, col2 = st.columns([1, 1])
     with col1:
-        w1_odds = st.number_input("W1 Odds (Kaizen Bet)", min_value=1.01, value=2.5, step=0.01)
+        w1_odds = st.number_input("Kaizen Odds", min_value=1.01, value=2.5, step=0.01)
     with col2:
-        w2_odds = st.number_input("W2 Odds (Competition Bet)", min_value=1.01, value=2.0, step=0.01)
+        w2_odds = st.number_input("Competition Odds", min_value=1.01, value=2.0, step=0.01)
 
 # Dynamic Input for W1, W2, and Total stakes
 col1, col2, col3 = st.columns([1, 1, 1])
 with col1:
-    w1_stake = st.number_input("W1 Stake (€)", min_value=0.0, step=0.01, value=0.0)
+    w1_stake = st.number_input("Kaizen Stakes (€)", min_value=0.0, step=0.01, value=0.0)
 with col2:
-    w2_stake = st.number_input("W2 Stake (€)", min_value=0.0, step=0.01, value=0.0)
+    w2_stake = st.number_input("Competition Stakes (€)", min_value=0.0, step=0.01, value=0.0)
 with col3:
     total_stake = st.number_input("Total Stake (€)", min_value=0.0, step=0.01, value=0.0)
 
@@ -72,6 +72,12 @@ else:
 # Display Results
 if results:
     st.markdown("### Results")
+
+    # Styling for Arbitrage and Profits
+    arbitrage_color = "green" if results["Arbitrage %"] > 0 else "red"
+    profit_w1_color = "green" if results["Profit W1"] > 0 else "red"
+    profit_w2_color = "green" if results["Profit W2"] > 0 else "red"
+
     st.markdown(
         f"""
         <style>
@@ -94,16 +100,28 @@ if results:
         .result-box ul li {{
             margin-bottom: 5px;
         }}
+        .arbitrage {{
+            color: {arbitrage_color};
+            font-weight: bold;
+        }}
+        .profit-w1 {{
+            color: {profit_w1_color};
+            font-weight: bold;
+        }}
+        .profit-w2 {{
+            color: {profit_w2_color};
+            font-weight: bold;
+        }}
         </style>
         <div class="result-box">
             <h4>Calculation Results:</h4>
             <ul>
-                <li>W1 Stake: €{results['W1 Stake']}</li>
-                <li>W2 Stake: €{results['W2 Stake']}</li>
-                <li>Total Stake: €{results['Total Stake']}</li>
-                <li>Profit W1: €{results['Profit W1']}</li>
-                <li>Profit W2: €{results['Profit W2']}</li>
-                <li>Arbitrage %: {results['Arbitrage %']}%</li>
+                <li>Kaizen Stakes: {results['W1 Stake']}€</li>
+                <li>Competition Stakes: {results['W2 Stake']}€</li>
+                <li>Total Stake: {results['Total Stake']}€</li>
+                <li>Profit Kaizen: <span class="profit-w1">{results['Profit W1']}€</span></li>
+                <li>Profit Competition: <span class="profit-w2">{results['Profit W2']}€</span></li>
+                <li>Arbitrage: <span class="arbitrage">{results['Arbitrage %']}%</span></li>
             </ul>
         </div>
         """,
