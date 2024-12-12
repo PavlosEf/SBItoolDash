@@ -1,28 +1,33 @@
 import streamlit as st
 
 # Function to calculate stakes and arbitrage
-def calculate_surebet(odds, kaizen_stake=None, total_stake=None):
-    num_outcomes = len(odds)
-
+def calculate_surebet(w1_odds, w2_odds, w1_stake=None, w2_stake=None, total_stake=None):
     if total_stake:
         # Split total stake for equal profit
-        total_inverse_odds = sum(1 / o for o in odds)
-        stakes = [(total_stake / total_inverse_odds) * (1 / o) for o in odds]
-    elif kaizen_stake:
-        # Calculate stakes from Kaizen Stake for proportional distribution based on odds
-        stakes = [kaizen_stake] + [(kaizen_stake / odds[0]) * o for o in odds[1:]]
-        total_stake = sum(stakes)
+        w1_stake = total_stake / (1 + w1_odds / w2_odds)
+        w2_stake = total_stake - w1_stake
+    elif w1_stake:
+        # Calculate w2 stake for equal profit
+        w2_stake = (w1_stake * w1_odds) / w2_odds
+        total_stake = w1_stake + w2_stake
+    elif w2_stake:
+        # Calculate w1 stake for equal profit
+        w1_stake = (w2_stake * w2_odds) / w1_odds
+        total_stake = w1_stake + w2_stake
 
-    # Calculate profits for each outcome
-    profits = [(odds[i] * stakes[i]) - total_stake for i in range(num_outcomes)]
+    # Calculate profits
+    profit_w1 = (w1_odds * w1_stake) - total_stake
+    profit_w2 = (w2_odds * w2_stake) - total_stake
 
     # Calculate arbitrage percentage
-    arbitrage_percentage = max(profits) / total_stake * 100 if total_stake > 0 else 0
+    arbitrage_percentage = max(profit_w1, profit_w2) / total_stake * 100 if total_stake > 0 else 0
 
     return {
-        "Stakes": [round(s, 2) for s in stakes],
+        "W1 Stake": round(w1_stake, 2),
+        "W2 Stake": round(w2_stake, 2),
         "Total Stake": round(total_stake, 2),
-        "Profits": [round(p, 2) for p in profits],
+        "Profit W1": round(profit_w1, 2),
+        "Profit W2": round(profit_w2, 2),
         "Arbitrage %": round(arbitrage_percentage, 2)
     }
 
@@ -30,48 +35,33 @@ def calculate_surebet(odds, kaizen_stake=None, total_stake=None):
 st.title("Surebet Calculator")
 st.markdown("Calculate stakes and profits for arbitrage betting scenarios dynamically.")
 
-# Dropdown for number of outcomes
-st.markdown("### Input Parameters")
-num_outcomes = st.selectbox(
-    "Select number of outcomes:", ["2way", "3way", "4way", "5way", "6way", "7way", "8way", "9way", "10way"], index=0
-)
-num_outcomes = int(num_outcomes.replace("way", ""))
-
 # Input Fields
+st.markdown("### Input Parameters")
 with st.container():
     col1, col2 = st.columns([1, 1])
     with col1:
-        kaizen_odds = st.number_input("Kaizen Odds", min_value=1.01, value=2.5, step=0.01)
+        w1_odds = st.number_input("W1 Odds (Kaizen Bet)", min_value=1.01, value=2.5, step=0.01)
     with col2:
-        competition_odds_1 = st.number_input("Competition 1 Odds", min_value=1.01, value=2.0, step=0.01)
-
-# Dynamic Input for Odds
-odds = [kaizen_odds, competition_odds_1]
-if num_outcomes > 2:
-    for i in range(2, num_outcomes):
-        odds.append(
-            st.number_input(f"Competition {i} Odds", min_value=1.01, step=0.01, value=1.01, key=f"odds_{i}")
-        )
+        w2_odds = st.number_input("W2 Odds (Competition Bet)", min_value=1.01, value=2.0, step=0.01)
 
 # Input for stakes
-col1, col2 = st.columns([1, 1])
+col1, col2, col3 = st.columns([1, 1, 1])
 with col1:
-    kaizen_stake = st.number_input("Kaizen Stakes (€)", min_value=0.0, step=0.01, value=0.0)
+    w1_stake = st.number_input("W1 Stake (€)", min_value=0.0, step=0.01, value=0.0)
 with col2:
+    w2_stake = st.number_input("W2 Stake (€)", min_value=0.0, step=0.01, value=0.0)
+with col3:
     total_stake = st.number_input("Total Stake (€)", min_value=0.0, step=0.01, value=0.0)
 
-# Ensure all odds are filled
-if any(o < 1.01 for o in odds):
-    st.markdown("<p style='color: red;'>Please input all odds</p>", unsafe_allow_html=True)
-    results = None
+# Dynamic Calculation
+if total_stake > 0:
+    results = calculate_surebet(w1_odds, w2_odds, total_stake=total_stake)
+elif w1_stake > 0:
+    results = calculate_surebet(w1_odds, w2_odds, w1_stake=w1_stake)
+elif w2_stake > 0:
+    results = calculate_surebet(w1_odds, w2_odds, w2_stake=w2_stake)
 else:
-    # Dynamic Calculation
-    if total_stake > 0:
-        results = calculate_surebet(odds, total_stake=total_stake)
-    elif kaizen_stake > 0:
-        results = calculate_surebet(odds, kaizen_stake=kaizen_stake)
-    else:
-        results = None
+    results = None
 
 # Display Results
 if results:
@@ -79,7 +69,6 @@ if results:
 
     # Styling for Arbitrage and Profits
     arbitrage_color = "green" if results["Arbitrage %"] > 0 else "red"
-    profit_colors = ["green" if p > 0 else "red" for p in results["Profits"]]
 
     st.markdown(
         f"""
@@ -111,10 +100,11 @@ if results:
         <div class="result-box">
             <h4>Calculation Results:</h4>
             <ul>
-                <li>Kaizen Stakes: {results['Stakes'][0]}€</li>
-                {''.join(f'<li>Competition {i} Stakes: {results["Stakes"][i]}€</li>' for i in range(1, len(results['Stakes'])))}
+                <li>W1 Stake: {results['W1 Stake']}€</li>
+                <li>W2 Stake: {results['W2 Stake']}€</li>
                 <li>Total Stake: {results['Total Stake']}€</li>
-                {''.join(f'<li style="color: {profit_colors[i]}">Profit Outcome {i + 1}: {results["Profits"][i]}€</li>' for i in range(len(results['Profits'])))}
+                <li>Profit W1: {results['Profit W1']}€</li>
+                <li>Profit W2: {results['Profit W2']}€</li>
                 <li>Arbitrage: <span class="arbitrage">{results['Arbitrage %']}%</span></li>
             </ul>
         </div>
