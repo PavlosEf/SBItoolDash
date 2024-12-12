@@ -181,7 +181,7 @@ elif selected_tool == "Surebet Calculator":
 
 elif selected_tool == "Top Price / Betfair Calculator":
     # Import and run the Lay Bet Calculator code
-    import lay_bet_calculator
+    import betfairtop
 
 elif selected_tool == "Margins Removal":
     st.title("Margins Removal")
