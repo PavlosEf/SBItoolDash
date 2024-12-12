@@ -1,13 +1,17 @@
 import streamlit as st
 
 # Function to calculate stakes and arbitrage
-def calculate_surebet(odds, total_stake=None):
+def calculate_surebet(odds, kaizen_stake=None, total_stake=None):
     num_outcomes = len(odds)
 
     if total_stake:
-        # Calculate stakes for equal profit
+        # Split total stake for equal profit
         total_inverse_odds = sum(1 / o for o in odds)
         stakes = [(total_stake / total_inverse_odds) * (1 / o) for o in odds]
+    elif kaizen_stake:
+        # Calculate stakes from Kaizen Stake for proportional distribution based on odds
+        stakes = [kaizen_stake] + [(kaizen_stake / odds[0]) * o for o in odds[1:]]
+        total_stake = sum(stakes)
 
     # Calculate profits for each outcome
     profits = [(odds[i] * stakes[i]) - total_stake for i in range(num_outcomes)]
@@ -49,8 +53,12 @@ if num_outcomes > 2:
             st.number_input(f"Competition {i} Odds", min_value=1.01, step=0.01, value=1.01, key=f"odds_{i}")
         )
 
-# Input for total stake
-total_stake = st.number_input("Total Stake (€)", min_value=0.0, step=0.01, value=0.0)
+# Input for stakes
+col1, col2 = st.columns([1, 1])
+with col1:
+    kaizen_stake = st.number_input("Kaizen Stakes (€)", min_value=0.0, step=0.01, value=0.0)
+with col2:
+    total_stake = st.number_input("Total Stake (€)", min_value=0.0, step=0.01, value=0.0)
 
 # Ensure all odds are filled
 if any(o < 1.01 for o in odds):
@@ -60,6 +68,8 @@ else:
     # Dynamic Calculation
     if total_stake > 0:
         results = calculate_surebet(odds, total_stake=total_stake)
+    elif kaizen_stake > 0:
+        results = calculate_surebet(odds, kaizen_stake=kaizen_stake)
     else:
         results = None
 
