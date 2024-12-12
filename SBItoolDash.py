@@ -180,7 +180,6 @@ elif selected_tool == "Surebet Calculator":
     # Add your Surebet Calculator logic here
 
 elif selected_tool == "Top Price / Betfair Calculator":
-    elif selected_tool == "Top Price / Betfair Calculator":
     st.title("Top Price / Betfair Calculator")
 
     # Function for calculation
