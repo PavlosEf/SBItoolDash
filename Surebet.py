@@ -2,25 +2,20 @@ import streamlit as st
 
 # Function to calculate stakes and arbitrage
 def calculate_surebet(w1_odds, w2_odds, w1_stake=None, w2_stake=None, total_stake=None):
-    if total_stake:
+    # Ensure manual stakes are used directly
+    if w1_stake is not None and w2_stake is not None:
+        total_stake = w1_stake + w2_stake
+    elif total_stake is not None:
         # Calculate stakes from total stake
         w1_stake = total_stake / (1 + w1_odds / w2_odds)
         w2_stake = total_stake - w1_stake
-    elif w1_stake:
-        # Calculate w2 stake from w1 stake
-        w2_stake = (w1_stake * w1_odds) / w2_odds
-        total_stake = w1_stake + w2_stake
-    elif w2_stake:
-        # Calculate w1 stake from w2 stake
-        w1_stake = (w2_stake * w2_odds) / w1_odds
-        total_stake = w1_stake + w2_stake
 
-    # Calculate profit
+    # Calculate profits
     profit_w1 = (w1_odds * w1_stake) - total_stake
     profit_w2 = (w2_odds * w2_stake) - total_stake
 
     # Calculate arbitrage percentage
-    arbitrage_percentage = (profit_w1 / total_stake) * 100 if profit_w1 > 0 else (profit_w2 / total_stake) * 100
+    arbitrage_percentage = max(profit_w1, profit_w2) / total_stake * 100
 
     return {
         "W1 Stake": round(w1_stake, 2),
@@ -38,7 +33,7 @@ st.markdown("Calculate stakes and profits for arbitrage betting scenarios.")
 # Input Fields
 st.markdown("### Input Parameters")
 with st.container():
-    col1, col2, col3 = st.columns([1, 1, 1])
+    col1, col2 = st.columns([1, 1])
     with col1:
         w1_odds = st.number_input("W1 Odds (Kaizen Bet)", min_value=1.01, value=2.5, step=0.01)
     with col2:
@@ -47,30 +42,25 @@ with st.container():
 # Dynamic Input for W1, W2, and Total stakes
 col1, col2, col3 = st.columns([1, 1, 1])
 with col1:
-    w1_stake = st.number_input("W1 Stake (€)", min_value=0.0, value=0.0, step=0.01)
+    w1_stake = st.number_input("W1 Stake (€)", min_value=0.0, step=0.01, value=0.0)
 with col2:
-    w2_stake = st.number_input("W2 Stake (€)", min_value=0.0, value=0.0, step=0.01)
+    w2_stake = st.number_input("W2 Stake (€)", min_value=0.0, step=0.01, value=0.0)
 with col3:
-    total_stake = st.number_input("Total Stake (€)", min_value=0.0, value=0.0, step=0.01)
+    total_stake = st.number_input("Total Stake (€)", min_value=0.0, step=0.01, value=0.0)
 
 # Calculation Button
 if st.button("Calculate"):
-    if total_stake > 0:
+    if w1_stake > 0 and w2_stake > 0:
+        # Use manual stakes if provided
+        results = calculate_surebet(w1_odds, w2_odds, w1_stake=w1_stake, w2_stake=w2_stake)
+    elif total_stake > 0:
+        # Calculate stakes from total stake
         results = calculate_surebet(w1_odds, w2_odds, total_stake=total_stake)
-    elif w1_stake > 0:
-        results = calculate_surebet(w1_odds, w2_odds, w1_stake=w1_stake)
-    elif w2_stake > 0:
-        results = calculate_surebet(w1_odds, w2_odds, w2_stake=w2_stake)
     else:
         results = None
 
-    # Update input boxes dynamically based on the calculation
+    # Display Results
     if results:
-        st.session_state["w1_stake"] = results["W1 Stake"]
-        st.session_state["w2_stake"] = results["W2 Stake"]
-        st.session_state["total_stake"] = results["Total Stake"]
-
-        # Display Results
         st.markdown("### Results")
         st.markdown(
             f"""
