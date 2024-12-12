@@ -65,7 +65,7 @@ with st.sidebar:
     )
 
 # Main content area
-if selected_tool == "Off Prices Calculator":
+    if selected_tool == "Off Prices Calculator":
     st.title("Off Prices Calculator")
     st.markdown("Enter prices below to calculate the percentage difference Kaizen odds are 1st! .")
 
