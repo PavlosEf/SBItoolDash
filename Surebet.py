@@ -6,10 +6,10 @@ def calculate_surebet(odds, kaizen_stake=None, total_stake=None):
 
     if total_stake:
         # Split total stake for equal profit
-        stakes = [total_stake / sum(1 / o for o in odds) * (1 / o) for o in odds]
+        stakes = [total_stake / num_outcomes] * num_outcomes
     elif kaizen_stake:
         # Calculate stakes from Kaizen Stake for equal profit
-        stakes = [kaizen_stake * (1 / odds[0]) * o for o in odds]
+        stakes = [kaizen_stake] + [kaizen_stake for _ in range(1, num_outcomes)]
         total_stake = sum(stakes)
 
     # Calculate profits for each outcome
@@ -110,7 +110,8 @@ if results:
         <div class="result-box">
             <h4>Calculation Results:</h4>
             <ul>
-                {''.join(f'<li>Competition {i + 1} Stakes: {results["Stakes"][i]}€</li>' for i in range(len(results['Stakes'])))}
+                <li>Kaizen Stakes: {results['Stakes'][0]}€</li>
+                {''.join(f'<li>Competition {i} Stakes: {results["Stakes"][i]}€</li>' for i in range(1, len(results['Stakes'])))}
                 <li>Total Stake: {results['Total Stake']}€</li>
                 {''.join(f'<li style="color: {profit_colors[i]}">Profit Outcome {i + 1}: {results["Profits"][i]}€</li>' for i in range(len(results['Profits'])))}
                 <li>Arbitrage: <span class="arbitrage">{results['Arbitrage %']}%</span></li>
