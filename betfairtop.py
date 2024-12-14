@@ -81,7 +81,7 @@ if st.button("Calculate"):
             border-radius: 8px;
             padding: 15px;
             margin: 10px;
-            color: #FFFFFF;
+            color: #3E4E56;
         }}
         .result-box h4 {{
             margin-bottom: 10px;
