@@ -76,7 +76,7 @@ if st.button("Calculate"):
         f"""
         <style>
         .result-box {{
-            background-color: #3E4E56;
+            background-color: #EAEAEA;
             border: 1px solid #DEE2E6;
             border-radius: 8px;
             padding: 15px;
